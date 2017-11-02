@@ -1,0 +1,11 @@
+name: notification_service_client
+version: 0.0.1
+description: Клиент для работы с сервисом уведомлений
+author: Roman Petrov
+
+dependencies:
+  http: ^0.11.3+16
+
+dev_dependencies:
+  test: ^0.12.26
+  shelf: ^0.6.2
