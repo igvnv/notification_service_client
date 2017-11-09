@@ -88,5 +88,15 @@ void main () {
 
       server.close();
     });
+
+    test('Инициализация клиента без указания протокола http', () async {
+      NotificationServiceClient notificationServiceClient2 = new NotificationServiceClient('${_testServerHost}:${_testServerPort}');
+
+      var server = await _createServer({'one': {'success': true}, 'two': {'success': true}});
+      var response = await notificationServiceClient2.sendNotify({'one': {'message': 'test'}});
+      server.close();
+
+      expect(response, isNull);
+    });
   });
 }

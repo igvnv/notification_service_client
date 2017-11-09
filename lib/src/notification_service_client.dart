@@ -36,7 +36,19 @@ class NotificationServiceClient {
   /// Адрес сервиса отправки уведомлений
   final String _serviceUri;
 
-  NotificationServiceClient(String serviceUri): _serviceUri = serviceUri;
+  /// Добавление протокола к адресу сервиса, если это необходимо
+  ///
+  /// Если отправлять запросы без указания протокола, то будет происходить ошибка
+  /// No host specified in URI
+  static String _addProtocol(String serviceUri) {
+    if (!serviceUri.startsWith('http')) {
+      return 'http://' + serviceUri;
+    }
+
+    return serviceUri;
+  }
+
+  NotificationServiceClient(String serviceUri): _serviceUri = _addProtocol(serviceUri);
 
   /// Отправить уведомления
   ///
